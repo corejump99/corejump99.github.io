@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corejump99 | Coming Soon</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Corejump99 | One-Click Infrastructure</title>
     <style>
         :root {
-            --bg-color: #0f172a;
-            --accent-color: #38bdf8;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --glass-bg: rgba(30, 41, 59, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --bg: #ffffff;
+            --fg: #000000;
+            --muted: #666666;
+            --border: #e1e1e1;
+            --code-bg: #f5f5f5;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #000000;
+                --fg: #ffffff;
+                --muted: #888888;
+                --border: #333333;
+                --code-bg: #111111;
+            }
         }
 
         * {
@@ -24,185 +30,136 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(at 0% 0%, hsla(215, 98%, 61%, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, hsla(199, 89%, 48%, 0.15) 0px, transparent 50%);
-            color: var(--text-primary);
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+            background-color: var(--bg);
+            color: var(--fg);
+            line-height: 1.6;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .container {
-            position: relative;
-            z-index: 10;
-            max-width: 600px;
-            width: 90%;
-            text-align: center;
-            padding: 3rem 2rem;
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 1.2s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        header {
+            margin-bottom: 4rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
         }
 
         .logo {
-            font-weight: 700;
-            font-size: 1.25rem;
-            letter-spacing: -0.025em;
-            color: var(--accent-color);
-            margin-bottom: 2rem;
-            display: inline-block;
+            font-weight: bold;
+            font-size: 1.2rem;
+            letter-spacing: -0.05em;
         }
 
         h1 {
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            font-weight: 700;
-            line-height: 1;
+            font-size: 2rem;
             margin-bottom: 1.5rem;
-            letter-spacing: -0.05em;
-            background: linear-gradient(to bottom right, #fff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            letter-spacing: -0.02em;
         }
 
         p {
-            color: var(--text-secondary);
-            font-size: 1.125rem;
-            line-height: 1.6;
-            margin-bottom: 2.5rem;
-            max-width: 450px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
         }
 
-        .subscribe-form {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        input[type="email"] {
-            flex: 1;
-            padding: 0.75rem 1.25rem;
-            border-radius: 12px;
-            border: 1px solid var(--glass-border);
-            background: rgba(15, 23, 42, 0.5);
-            color: white;
-            font-family: inherit;
-            outline: none;
+        .card {
+            border: 1px solid var(--border);
+            padding: 1.5rem;
             transition: border-color 0.2s;
         }
 
-        input[type="email"]:focus {
-            border-color: var(--accent-color);
+        .card:hover {
+            border-color: var(--fg);
         }
 
-        button {
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            border: none;
-            background: var(--accent-color);
-            color: #000;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, opacity 0.2s;
+        .card h2 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
         }
 
-        button:hover {
-            transform: translateY(-1px);
-            opacity: 0.9;
+        .card p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 0;
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1rem;
+        .code-block {
+            background: var(--code-bg);
+            padding: 1.25rem;
+            border: 1px solid var(--border);
+            margin: 2rem 0;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            position: relative;
         }
 
-        .social-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.875rem;
-            transition: color 0.2s;
+        .muted {
+            color: var(--muted);
         }
 
-        .social-links a:hover {
-            color: var(--accent-color);
+        footer {
+            margin-top: 5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.8rem;
+            color: var(--muted);
         }
 
-        /* Decorative elements */
-        .blob {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: var(--accent-color);
-            filter: blur(80px);
-            opacity: 0.1;
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .blob-1 { top: -100px; left: -100px; }
-        .blob-2 { bottom: -100px; right: -100px; animation: pulse 10s infinite alternate; }
-
-        @keyframes pulse {
-            from { transform: scale(1); opacity: 0.1; }
-            to { transform: scale(1.2); opacity: 0.15; }
-        }
-
-        @media (max-width: 480px) {
-            .subscribe-form {
-                flex-direction: column;
+        @media (max-width: 640px) {
+            .grid {
+                grid-template-columns: 1fr;
             }
-            .container {
-                padding: 2rem 1.5rem;
+            body {
+                padding: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-
-    <main class="container">
+    <header>
         <div class="logo">COREJUMP99</div>
-        <h1>Coming Soon</h1>
-        <p>We're building something exceptional. Be the first to know when we launch our new digital experience.</p>
-        
-        <form class="subscribe-form" onsubmit="event.preventDefault(); alert('Thanks for your interest!');">
-            <input type="email" placeholder="Enter your email" required>
-            <button type="submit">Notify Me</button>
-        </form>
+    </header>
 
-        <div class="social-links">
-            <a href="#">Twitter</a>
-            <a href="#">GitHub</a>
-            <a href="#">LinkedIn</a>
+    <main>
+        <h1>Infrastructure. Automate Everything.</h1>
+        <p>A single, lightweight script to provision your entire digital environment. Designed for performance, security, and simplicity.</p>
+
+        <div class="code-block">
+            <span class="muted"># Initialize your environment</span><br>
+            curl -sSL https://corejump.io/install.sh | bash
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Homelab Setup</h2>
+                <p>Deploy a complete homelab stack with curated tools for media, automation, and self-hosting in under 5 minutes.</p>
+            </div>
+            <div class="card">
+                <h2>Office & Startups</h2>
+                <p>Standardize your infrastructure. Provision office servers or startup cloud environments with a single click.</p>
+            </div>
+            <div class="card">
+                <h2>Recommended Tools</h2>
+                <p>Includes Docker, Portainer, Nginx Proxy Manager, and essential monitoring tools out of the box.</p>
+            </div>
+            <div class="card">
+                <h2>Zero Bloat</h2>
+                <p>Pure shell automation. No heavy dependencies or proprietary agents required. Just clean, portable code.</p>
+            </div>
         </div>
     </main>
 
-    <script>
-        // Subtle mouse move effect
-        document.addEventListener('mousemove', (e) => {
-            const container = document.querySelector('.container');
-            const x = (window.innerWidth / 2 - e.pageX) / 50;
-            const y = (window.innerHeight / 2 - e.pageY) / 50;
-            container.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
-        });
-    </script>
+    <footer>
+        &copy; 2026 Corejump99. Built for engineers.
+    </footer>
 </body>
 </html>
